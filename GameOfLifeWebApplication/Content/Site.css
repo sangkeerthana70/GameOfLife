@@ -27,8 +27,17 @@ table {
     margin:15px;
 }
 
-.cell {
-    width:30px;
-    border-style:solid;
-    padding:100px;
+.False {
+    width: 30px;
+    border-style: solid;
+    background-color: gray;
+    padding: 100px;
 }
+
+.True {
+    width: 30px;
+    border-style: solid;
+    background-color: lime;
+    padding: 100px;
+}
+   

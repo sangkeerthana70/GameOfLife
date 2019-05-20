@@ -17,10 +17,11 @@
     <tr>
         @for (int j = 0; j < columns; j++)
         {
-            <td class="cell">@Model.grid[i,j]</td>
+            <td onclick= "change(this)"(id ="cell" class="@Model.grid[i, j].ToString()" value ="@Model.grid[i, j]"></td>
         }
     </tr>
 
     }
 
 </table>
+
