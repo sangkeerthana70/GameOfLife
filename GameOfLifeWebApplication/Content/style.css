@@ -24,20 +24,22 @@ textarea {
 }
 
 table {
-    margin:15px;
+    margin: 15px;
 }
 
-.False {
+.cell {
     width: 30px;
     border-style: solid;
-    background-color: gray;
-    padding: 100px;
+    border-width: 0.5px;
+    border-color: gray;
+    padding: 10px;
+}
+.clicked{
+    background-color: lightblue;
 }
 
-.True {
-    width: 30px;
-    border-style: solid;
-    background-color: lime;
-    padding: 100px;
+
+.hidden{
+    display:none;
 }
    

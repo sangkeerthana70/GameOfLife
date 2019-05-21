@@ -11,13 +11,13 @@
 <p>Generation = @Html.DisplayFor(modelItem => Model.generation)</p>
 
 
-<table class="table">
+<table>
     @for (int i = 0; i < rows; i++)
     {
     <tr>
         @for (int j = 0; j < columns; j++)
         {
-            <td onclick= "change(this)"(id ="cell" class="@Model.grid[i, j].ToString()" value ="@Model.grid[i, j]"></td>
+            <td class="cell @(@Model.grid[i,j] ? "clicked" : "")" ></td>
         }
     </tr>
 
