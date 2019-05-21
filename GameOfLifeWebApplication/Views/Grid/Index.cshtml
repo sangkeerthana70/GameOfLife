@@ -17,7 +17,9 @@
     <tr>
         @for (int j = 0; j < columns; j++)
         {
-            <td class="cell @(@Model.grid[i,j] ? "clicked" : "")" ></td>
+        <td class="cell @(@Model.grid[i,j] ? "clicked" : "")">
+            @Html.CheckBox("c",new {@class="hidden"})
+        </td>
         }
     </tr>
 
