@@ -16,5 +16,10 @@ namespace GameOfLifeWebApplication.Controllers
             return View(grid);
         }
 
+        public String Next()
+        {
+            return "In Next method";
+        }
+
     }
 }

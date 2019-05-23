@@ -5,6 +5,7 @@
 
     $('#reset').click(function () {
         alert("clicked");
-    })
+    });
+   
 });
 

@@ -18,7 +18,7 @@ namespace GameOfLifeWebApplication.Models
             {
                 for(int j = 0; j < columns; j++)
                 {
-                    this.grid[i, j] = true;
+                    this.grid[i, j] = false;
                 }
             }
         }
