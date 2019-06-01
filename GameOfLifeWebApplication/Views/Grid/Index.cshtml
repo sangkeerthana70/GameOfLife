@@ -11,20 +11,21 @@
 <p>Generation = @Html.DisplayFor(modelItem => Model.generation)</p>
 
 
-<table>
+<table class="center">
     @for (int i = 0; i < rows; i++)
     {
-    <tr>
-        @for (int j = 0; j < columns; j++)
-        {
-        <td class="cell @(@Model.grid[i,j] ? "clicked" : "")">
-            @Html.CheckBox("c",new {@class="hidden"})
-        </td>
-        }
-    </tr>
+        <tr>
+            @for (int j = 0; j < columns; j++)
+            {
+                <td class="cell @(@Model.grid[i,j] ? "clicked" : "")">
+                    @Html.CheckBox("c", new { @class = "hidden" })
+                </td>
+            }
+        </tr>
 
     }
 
 </table>
+
 @Html.ActionLink("Reset", "Index")
 @Html.ActionLink("Next", "Next")

@@ -27,6 +27,11 @@ table {
     margin: 15px;
 }
 
+table.center{
+    margin-right:auto;
+    margin-left:auto;
+}
+
 .cell {
     width: 30px;
     border-style: solid;
