@@ -32,8 +32,29 @@ namespace GameOfLifeWebApplication.Models
                 for(int j = 0; j < gamestate.GetLength(1); j++)
                 {
                     Console.WriteLine("i = {0}, j = {1} , Value = {2} ", i, j, gamestate[i, j]);
-                    neighbors = GetNeighbors(i, j, gamestate);
+                    neighbors = GetActiveNeighbors(i, j, gamestate);
                     Console.WriteLine("neighbors " + neighbors);
+
+
+                    if(gamestate[i, j] == true)
+                    {
+                        if ((neighbors == 2) || (neighbors == 3))
+                        {
+                            gamestate[i, j] = true;
+                        }
+                        else
+                        {
+                            gamestate[i, j] = false;
+                        }
+                            
+                    }
+                    else
+                    {
+                        if(neighbors == 3)
+                        {
+                            gamestate[i, j] = true;
+                        }
+                    }
                 }
                 
             }
@@ -41,7 +62,7 @@ namespace GameOfLifeWebApplication.Models
             return gamestate;
         }
 
-        private static int GetNeighbors(int i, int j, bool[,] gameState)
+        private static int GetActiveNeighbors(int i, int j, bool[,] gameState)
         {
             int rowStart = 0;
             int rowEnd = 0;
@@ -65,6 +86,8 @@ namespace GameOfLifeWebApplication.Models
 
             if (j == gameState.GetLength(1) - 1)
                 columnEnd = j;
+            else
+                columnEnd = j + 1;
 
             Console.WriteLine("rowStart: " + rowStart);
             Console.WriteLine("rowEnd: " + rowEnd);
@@ -74,9 +97,16 @@ namespace GameOfLifeWebApplication.Models
             
             for(int x = rowStart; x <= rowEnd; x++)
             {
-                for(int y = 0; y <= columnStart; y++)
+                for(int y = columnStart; y <= columnEnd; y++)
                 {
-                    neighbors++;
+                    if((x == i) && (y == j))
+                    {
+                        continue;
+                    }
+
+                    if(gameState[x, y] == true)
+                        neighbors++;
+
                 }
             }
 
