@@ -30,7 +30,8 @@ namespace GameOfLifeTests
         }
 
         [Test]
-        public void EachCellAdjacentToExactlyThreeLiveNeighborsBecomesAlive()
+        // Births: Each dead cell adjacent to exactly three live neighbors will become live in the next generation.
+        public void EachDeadCellAdjacentTo_ExactlyThreeLiveNeighborsBecomesAlive()
         {
             bool[,] input = new bool[3, 3]
             {
@@ -48,7 +49,35 @@ namespace GameOfLifeTests
             };
             Assert.AreEqual(expected, output);
         }
- 
+        
+        [Test]
+        //Survival: Each live cell with either two or three live neighbors will remain alive for the next generation.
+        public void EachLiveCellWith_EitherTwoOrThreeLiveNeighborsWillRemainAlive()
+        {
+            bool[,] input = new bool[5, 5]
+            {
+                { true, false, false, false, false },
+                { true, true, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, false, false }
+
+            };
+            bool[,] actual = Grid.ChangeState(input);
+            bool[,] expected = new bool[5, 5]
+            {
+
+                { true, true, false, false, false },
+                { true, true, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, false, false }
+
+
+            };
+            Assert.AreEqual(expected, actual);
+
+        }
 
     }
 }
