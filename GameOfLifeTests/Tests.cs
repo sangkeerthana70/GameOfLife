@@ -12,13 +12,19 @@ namespace GameOfLifeTests
     [TestFixture]
     public class Tests
     {
-        //bool[,] game = new bool[3, 3];
        [Test] 
         public void returnGrid()
         {
-            bool[,] input = new bool[3,3];
-            bool[,] output = Grid.GameOfLifeLogic(input);
+
+            bool[,] input = new bool[3, 3]
+            {
+                {false, true, false },
+                {true, true, false},
+                {false, false, false }
+
+            };
             bool[,] expected = input;
+            bool[,] output = Grid.ChangeState(input);
             Assert.AreEqual(expected, output);
 
         }
@@ -33,7 +39,7 @@ namespace GameOfLifeTests
                 {false, false, false }
 
             };
-            bool[,] output = Grid.GameOfLifeLogic(input);
+            bool[,] output = Grid.ChangeState(input);
             bool[,] expected = new bool[3, 3]
             {
                 {true, true, false },

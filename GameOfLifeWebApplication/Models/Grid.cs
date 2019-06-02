@@ -7,7 +7,7 @@ namespace GameOfLifeWebApplication.Models
 {
     public class Grid
     {
-        public bool[,] grid;
+        public bool[,] grid { get; set; }
         public int generation = 0;
 
         public Grid(int rows, int columns)
@@ -24,31 +24,65 @@ namespace GameOfLifeWebApplication.Models
         }
 
 
-        public static bool [,] GameOfLifeLogic(bool[,]game)
+        public static bool [,] ChangeState(bool[,]gamestate)
         {
-            int counter = 0;
-            for(int i = 0; i < game.GetLength(0) -2; i++)
+            int neighbors = 0;
+            for(int i = 0; i < gamestate.GetLength(0); i++)
             {
-                for (int j = 0; j < game.GetLength(1)-2; j++)
+                for(int j = 0; j < gamestate.GetLength(1); j++)
                 {
-                    if(game[i,j] == false)
-                    {
-                        Console.WriteLine("Inside if");
-                        if(game[i, j+1] == true && game[i+1, j] == true && game[i+1, j+1] == true)
-                        {
-                            
-                            game[i, j] = true;
-                            Console.WriteLine("game[i,j] " + game[i,j]);
-                            break;
-                        }
-                    }
+                    Console.WriteLine("i = {0}, j = {1} , Value = {2} ", i, j, gamestate[i, j]);
+                    neighbors = GetNeighbors(i, j, gamestate);
+                    Console.WriteLine("neighbors " + neighbors);
                 }
+                
             }
-            
 
-            return game;
+            return gamestate;
         }
 
+        private static int GetNeighbors(int i, int j, bool[,] gameState)
+        {
+            int rowStart = 0;
+            int rowEnd = 0;
+            int columnStart = 0;
+            int columnEnd = 0;
+
+            if (i == 0)            
+                rowStart = i;           
+            else
+                rowStart = i - 1;
+
+            if (j == 0)
+                columnStart = j;
+            else
+                columnStart = j - 1;
+
+            if (i == gameState.GetLength(0) - 1)
+                rowEnd = i;
+            else
+                rowEnd = i + 1;
+
+            if (j == gameState.GetLength(1) - 1)
+                columnEnd = j;
+
+            Console.WriteLine("rowStart: " + rowStart);
+            Console.WriteLine("rowEnd: " + rowEnd);
+            Console.WriteLine("colStart " + columnStart);
+            Console.WriteLine("colEnd " + columnEnd);
+            int neighbors = 0;
+            
+            for(int x = rowStart; x <= rowEnd; x++)
+            {
+                for(int y = 0; y <= columnStart; y++)
+                {
+                    neighbors++;
+                }
+            }
+
+            return neighbors;
+
+        }
 
     }
 }
