@@ -79,5 +79,67 @@ namespace GameOfLifeTests
 
         }
 
+        [Test]
+        //Death by isolation: Each live cell with one or fewer live neighbors will die in the next generation.
+        public void EachLiveCellWith_OneOrFewerLiveNeighborsWillDiebyIsolation()
+        {
+            bool[,] input = new bool[5, 5]
+           {
+                { true, false, false, false, false },
+                { true, true, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, true, false },
+                { false, false, false, false, true }
+
+           };
+            bool[,] actual = Grid.ChangeState(input);
+            bool[,] expected = new bool[5, 5]
+            {
+
+                { true, true, false, false, false },
+                { true, true, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, false, false },
+                { false, false, false, false, false }
+
+
+            };
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+
+        // Death by overcrowding: Each live cell with four or more live neighbors will die in the next generation.
+        public void EachLiveCellWith_FourOrMoreLiveNeighborsWillDieByOverCrowding()
+        {
+            bool[,] input = new bool[7, 7]
+            {
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false},
+                { false, false, true, true, true, false, false },
+                { false, false, true, true, true, false, false },
+                { false, false, false, true, true, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false }
+
+            };
+
+            bool[,] actual = Grid.ChangeState(input);
+            bool[,] expected = new bool[7, 7]
+            {
+               { false, false, false, false, false, false, false },
+                { false, false, false, true, false, false, false },
+                { false, false, true, false, true, false, false },
+                { false, false, false, false, false, true, false },
+                { false, false, true, false, true, false, false },
+                { false, false, false, false, false, false, false },
+                { false, false, false, false, false, false, false }
+
+
+            };
+            Assert.AreEqual(expected, actual);
+        }
+       
+
     }
 }

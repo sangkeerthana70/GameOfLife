@@ -13,6 +13,7 @@ namespace GameOfLifeWebApplication.Controllers
         public ActionResult Index()
         {
             Grid grid = new Grid(10, 10);
+          
             return View(grid);
         }
 

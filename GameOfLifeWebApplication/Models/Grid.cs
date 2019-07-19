@@ -27,12 +27,22 @@ namespace GameOfLifeWebApplication.Models
         public static bool [,] ChangeState(bool[,]gamestate)
         {
             int neighbors = 0;
+            bool[,] gamestateCopy = new bool[gamestate.GetLength(0), gamestate.GetLength(1)];
+
+            for (int i = 0; i < gamestate.GetLength(0); i++)
+            {
+                for (int j = 0; j < gamestate.GetLength(1); j++)
+                {
+                    gamestateCopy[i, j] = gamestate[i, j];
+                }
+            }
+
             for(int i = 0; i < gamestate.GetLength(0); i++)
             {
                 for(int j = 0; j < gamestate.GetLength(1); j++)
                 {
                     Console.WriteLine("i = {0}, j = {1} , Value = {2} ", i, j, gamestate[i, j]);
-                    neighbors = GetActiveNeighbors(i, j, gamestate);
+                    neighbors = GetActiveNeighbors(i, j, gamestateCopy);
                     Console.WriteLine("neighbors " + neighbors);
 
 
@@ -99,6 +109,7 @@ namespace GameOfLifeWebApplication.Models
             {
                 for(int y = columnStart; y <= columnEnd; y++)
                 {
+                    Console.WriteLine("x={0},y={1},value = {2}",x,y,gameState[x,y]);
                     if((x == i) && (y == j))
                     {
                         continue;
@@ -106,6 +117,8 @@ namespace GameOfLifeWebApplication.Models
 
                     if(gameState[x, y] == true)
                         neighbors++;
+
+                    Console.WriteLine("neighbour={0}", neighbors);
 
                 }
             }
